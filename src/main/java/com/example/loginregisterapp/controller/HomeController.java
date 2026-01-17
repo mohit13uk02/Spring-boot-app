@@ -24,20 +24,18 @@ public class HomeController {
     @GetMapping("/login")
     public String showLoginPage() {
         return "login";
-    }
+}
     @PostMapping("/login")
     public String loginUser(@RequestParam String email,
                             @RequestParam String password,
                             Model model) {
-
-        User user = userRepository.findByEmailAndPassword(email, password);
-
-        if (user != null) {
+User user = userRepository.findByEmailAndPassword(email, password);
+ if (user != null) {
             model.addAttribute("name", user.getUsername());
             return "welcome";
-        } else {
+ } else {
             model.addAttribute("error", "Invalid email or password");
             return "login";
-        }
+ }
     }
 }
