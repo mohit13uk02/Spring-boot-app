@@ -17,7 +17,10 @@ public class HomeController {
         return "register";
     }
     @PostMapping("/register")
-    public String registerUser(@Valid @ModelAttribute User user) {
+    public String registerUser(@Valid @ModelAttribute("user") User user,BindingResult result) {
+        if(result.haserror()){
+            return "register";
+        }
         userRepository.save(user);
         return "redirect:/login";
     }
