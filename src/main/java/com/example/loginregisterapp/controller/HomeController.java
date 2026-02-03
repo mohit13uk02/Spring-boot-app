@@ -44,7 +44,7 @@ public class HomeController {
     public String loginUser(@RequestParam String email,
                             @RequestParam String password,
                             Model model) {
-User user = userRepository.findByEmailAndPassword(email, password);
+User user = userService.loginUser(email, password);
  if (user != null) {
             model.addAttribute("name", user.getUsername());
             return "welcome";
