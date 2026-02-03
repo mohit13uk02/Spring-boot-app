@@ -1,31 +1,39 @@
 package com.example.loginregisterapp.controller;
-import com.example.loginregisterapp.model.User;
-import com.example.loginregisterapp.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.example.loginregisterapp.model.User;
+import com.example.loginregisterapp.service.UserService;
+
 import jakarta.validation.Valid;
+ 
 
-
-@Controller
+@Controller 
 public class HomeController {
+	private final UserService userService;
+	public HomeController(UserService userService) {
+		this.userService=userService;
+		
+	}
 
-    @Autowired
-    private UserRepository userRepository;
+    
     @GetMapping("/register")
     public String showRegisterPage(Model model) {
         model.addAttribute("user", new User());
         return "register";
     }
     @PostMapping("/register")
-    public String registerUser(@Valid @ModelAttribute("user") User user,BindingResult result) {
+    public String registerUser(@Valid @ModelAttribute User user,BindingResult result) {
         if(result.hasErrors()){
-                
+                 
             return "register";
         }
-        userRepository.save(user);
+        userService.registerUser(user); 
         return "redirect:/login";
     }
     @GetMapping("/login")
