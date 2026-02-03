@@ -26,7 +26,7 @@ public class HomeController {
                 model.addAttribute("usernameError",result.getFieldError("username").getDefaultMessage());
             }
             if(result.hasFieldErrors("email")){
-                model.addAttribute("emailerror",result.getFieldError("email").getDefaultMessage());
+                model.addAttribute("emailError",result.getFieldError("email").getDefaultMessage());
             }
                 
             return "register";
