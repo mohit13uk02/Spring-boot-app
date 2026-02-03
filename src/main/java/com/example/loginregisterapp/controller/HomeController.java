@@ -20,7 +20,7 @@ public class HomeController {
     }
     @PostMapping("/register")
     public String registerUser(@Valid @ModelAttribute("user") User user,BindingResult result) {
-        if(result.haserror()){
+        if(result.hasErrors()){
             return "register";
         }
         userRepository.save(user);
