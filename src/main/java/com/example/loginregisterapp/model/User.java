@@ -1,14 +1,19 @@
 package com.example.loginregisterapp.model;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 @Entity
 @Table(name = "users")
 public class User {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
- @NotBlank(messsage="Username can't be empty")
+ @NotBlank(message="Username can't be empty")
   private String username;
+  @Email
+  @NotBlank
  private String email;
+  @NotBlank
  private String password;
 public Long getId() {
         return id;
