@@ -20,14 +20,8 @@ public class HomeController {
         return "register";
     }
     @PostMapping("/register")
-    public String registerUser(@Valid @ModelAttribute("user") User user,BindingResult result,Model model) {
+    public String registerUser(@Valid @ModelAttribute("user") User user,BindingResult result) {
         if(result.hasErrors()){
-            if (result.hasFieldErrors("username")){
-                model.addAttribute("usernameError",result.getFieldError("username").getDefaultMessage());
-            }
-            if(result.hasFieldErrors("email")){
-                model.addAttribute("emailError",result.getFieldError("email").getDefaultMessage());
-            }
                 
             return "register";
         }
