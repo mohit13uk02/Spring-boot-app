@@ -3,6 +3,7 @@ package com.example.loginregisterapp.service;
 import org.springframework.stereotype.Service;
 
 import com.example.loginregisterapp.exception.EmailAlreadyExistsException;
+import com.example.loginregisterapp.exception.UserAlreadyExistException;
 import com.example.loginregisterapp.model.User;
 import com.example.loginregisterapp.repository.UserRepository;
 
@@ -19,6 +20,10 @@ public class UserServiceImpl implements UserService {
 		if(userRepository.existsByEmail(user.getEmail())){
 			throw new EmailAlreadyExistsException("Email already exists");
 		}
+		if(userRepository.existsByUsername(user.getUsername())) {
+			throw new UserAlreadyExistException("Username Already Exists");
+		}
+		
 		userRepository.save(user);
 		
 	} 

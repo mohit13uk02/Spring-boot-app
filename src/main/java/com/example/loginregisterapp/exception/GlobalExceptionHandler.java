@@ -12,5 +12,10 @@ public class GlobalExceptionHandler {
 		model.addAttribute("exception",ex.getMessage());
 		return "register";
 	}
- 
-}
+		@ExceptionHandler(UserAlreadyExistException.class)
+		public String handleUsernameException(UserAlreadyExistException ex, Model model) {
+			model.addAttribute("UserException",ex.getMessage());
+			return "register";
+			} 
+		}
+	

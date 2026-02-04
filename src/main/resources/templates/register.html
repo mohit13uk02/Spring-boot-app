@@ -3,6 +3,10 @@
 <body>
 
 <h2>Register</h2>
+<p th:if="${UserException}" style="color:red;">
+    [[${UserException}]]
+</p>
+
 
 <p th:if="${exception}" style="color:red;">
     [[${exception}]]
